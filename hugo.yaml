@@ -1,0 +1,50 @@
+baseURL: '/'
+languageCode: 'es'
+defaultContentLanguage: 'es'
+title: 'Roberto Kalinovskyy'
+theme: 'PaperMod'
+
+languages:
+  es:
+    languageName: "Español"
+    weight: 1
+    contentDir: "content"
+
+params:
+  defaultTheme: 'auto'
+  ShowReadingTime: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowRssButtonInSectionTermList: true
+  ShowWordCount: true
+  ShowFullTextinRSS: true
+  ShowToc: true
+  TocOpen: true
+
+  contact:
+    email: 'roberto.kalinovskyy@gmail.com'
+
+  homeInfoParams:
+    Content: |
+      # 👋 **Bienvenido a mi blog!**
+
+      En este blog voy a escribir sobre mis intereses, pensamientos y el camino en convertirme en mejor persona y disfrutar de la vida.
+
+menu: 
+  main:
+    - identifier: 'home'
+      name: 'Inicio'
+      url: '/'
+      weight: 10
+    - identifier: 'posts'
+      name: 'Posts'
+      url: '/posts/'
+      weight: 20
+    - identifier: 'about'
+      name: 'Sobre mi'
+      url: '/about/'
+      weight: 50
+
+outputs:
+  home: ['HTML', 'RSS', 'JSON'] 

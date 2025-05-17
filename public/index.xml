@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Roberto Kalinovskyy</title>
+    <link>//localhost:1313/</link>
+    <description>Recent content on Roberto Kalinovskyy</description>
+    <generator>Hugo -- 0.147.3</generator>
+    <language>es</language>
+    <lastBuildDate>Sat, 17 May 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cómo encontrar lo que te gusta después de años sin cuestionarlo</title>
+      <link>//localhost:1313/posts/sobre-como-encontrar-lo-que-te-gusta/</link>
+      <pubDate>Sat, 17 May 2025 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/sobre-como-encontrar-lo-que-te-gusta/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pensando en empezar la universidad a los 21</title>
+      <link>//localhost:1313/posts/pensando-en-empezar-la-uni-de-nuevo/</link>
+      <pubDate>Sat, 17 May 2025 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/pensando-en-empezar-la-uni-de-nuevo/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Sobre mí</title>
+      <link>//localhost:1313/about/</link>
+      <pubDate>Sat, 17 May 2025 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/about/</guid>
+      <description>&lt;h2 id=&#34;bienvenido&#34;&gt;Bienvenido&lt;/h2&gt;
+&lt;p&gt;Este es mi espacio personal en internet donde comparto mis pensamientos, plasmo mis ideas y escribo sobre temas que me apasionan.&lt;/p&gt;
+&lt;h3 id=&#34;sobre-mí&#34;&gt;Sobre Mí&lt;/h3&gt;
+&lt;p&gt;Nací en Madrid en el año 2004. A los 16 años, decidí dejar el bachillerato para embarcarme en una aventura profesional como desarrollador de software. Comencé una carrera en línea en Computer Science, aunque finalmente no la completé.&lt;/p&gt;
+&lt;p&gt;Después de cuatro años inmerso en el mundo del software y la tecnología, pasando por experiencias como fundar mi propia empresa y trabajar en la industria, me encuentro en un momento de autodescubrimiento. Estoy explorando lo que realmente me apasiona, desintoxicándome del mundo digital y las redes sociales, y compartiendo mis reflexiones y aventuras a través de este espacio.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h2 id="bienvenido">Bienvenido</h2>
+<p>Este es mi espacio personal en internet donde comparto mis pensamientos, plasmo mis ideas y escribo sobre temas que me apasionan.</p>
+<h3 id="sobre-mí">Sobre Mí</h3>
+<p>Nací en Madrid en el año 2004. A los 16 años, decidí dejar el bachillerato para embarcarme en una aventura profesional como desarrollador de software. Comencé una carrera en línea en Computer Science, aunque finalmente no la completé.</p>
+<p>Después de cuatro años inmerso en el mundo del software y la tecnología, pasando por experiencias como fundar mi propia empresa y trabajar en la industria, me encuentro en un momento de autodescubrimiento. Estoy explorando lo que realmente me apasiona, desintoxicándome del mundo digital y las redes sociales, y compartiendo mis reflexiones y aventuras a través de este espacio.</p>
+<h3 id="contacto">Contacto</h3>
+<ul>
+<li><a href="mailto:roberto.kalinovskyy@gmail.com">Email</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

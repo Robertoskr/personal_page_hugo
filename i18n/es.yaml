@@ -1,0 +1,81 @@
+- id: prev_page
+  translation: "Anterior"
+
+- id: next_page
+  translation: "Siguiente"
+
+- id: read_time
+  translation:
+    one : "1 minuto"
+    other: "{{ .Count }} minutos"
+
+- id: words
+  translation:
+    one : "palabra"
+    other: "{{ .Count }} palabras"
+
+- id: toc
+  translation: "Tabla de Contenidos"
+
+- id: translations
+  translation: "Traducciones"
+
+- id: home
+  translation: "Inicio"
+
+- id: edit_post
+  translation: "Editar"
+
+- id: code_copy
+  translation: "copiar"
+
+- id: code_copied
+  translation: "¡copiado!"
+
+- id: search
+  translation: "Buscar"
+
+- id: search_placeholder
+  translation: "Buscar en el sitio..."
+
+- id: no_results
+  translation: "No se encontraron resultados"
+
+- id: categories
+  translation: "Categorías"
+
+- id: tags
+  translation: "Etiquetas"
+
+- id: archive
+  translation: "Archivo"
+
+- id: recent_posts
+  translation: "Artículos Recientes"
+
+- id: related_posts
+  translation: "Artículos Relacionados"
+
+- id: share
+  translation: "Compartir"
+
+- id: powered_by
+  translation: "Desarrollado con"
+
+- id: theme_by
+  translation: "Tema por"
+
+- id: subscribe
+  translation: "Suscribirse"
+
+- id: subscribe_placeholder
+  translation: "Tu correo electrónico"
+
+- id: subscribe_button
+  translation: "Suscribirse"
+
+- id: subscribe_success
+  translation: "¡Gracias por suscribirte!"
+
+- id: subscribe_error
+  translation: "Hubo un error al suscribirte. Por favor, inténtalo de nuevo." 
