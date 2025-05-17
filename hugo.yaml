@@ -48,3 +48,7 @@ menu:
 
 outputs:
   home: ['HTML', 'RSS', 'JSON'] 
+
+caches:
+  images:
+    dir: :cacheDir/images
