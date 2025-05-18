@@ -14,6 +14,8 @@ Nací en Madrid en el año 2004. A los 16 años, decidí dejar el bachillerato p
 
 Después de cuatro años inmerso en el mundo del software y la tecnología, pasando por experiencias como fundar mi propia empresa y trabajar en la industria, me encuentro en un momento de autodescubrimiento. Estoy explorando lo que realmente me apasiona, desintoxicándome del mundo digital y las redes sociales, y compartiendo mis reflexiones y aventuras a través de este espacio.
 
+![Mi foto](/images/photo_new_york_bull.jpeg)
+
 ### Contacto
 
 - [Email](mailto:roberto.kalinovskyy@gmail.com)
