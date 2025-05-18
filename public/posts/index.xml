@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on Roberto Kalinovskyy</title>
-    <link>//localhost:1313/posts/</link>
+    <link>http://localhost:1313/posts/</link>
     <description>Recent content in Posts on Roberto Kalinovskyy</description>
     <generator>Hugo -- 0.147.3</generator>
     <language>es</language>
     <lastBuildDate>Sat, 17 May 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="//localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cómo encontrar lo que te gusta después de años sin cuestionarlo</title>
-      <link>//localhost:1313/posts/sobre-como-encontrar-lo-que-te-gusta/</link>
+      <link>http://localhost:1313/posts/sobre-como-encontrar-lo-que-te-gusta/</link>
       <pubDate>Sat, 17 May 2025 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/posts/sobre-como-encontrar-lo-que-te-gusta/</guid>
+      <guid>http://localhost:1313/posts/sobre-como-encontrar-lo-que-te-gusta/</guid>
       <description>&lt;p&gt;Durante los últimos años he estado trabajando en múltiples proyectos y empresas, siempre he estado programando, y pensándolo ahora, nunca me he parado a pensar si esto es lo que más me gusta hacer en la vida.&lt;/p&gt;
 &lt;p&gt;Puede que sí, que esto sea lo mejor. El problema es que no me he parado a pensarlo, a explorar otras alternativas, etc.&lt;/p&gt;
 &lt;p&gt;Quizás esto se debe a que me salté una etapa en mi vida (la universidad) y me lancé a lo primero que me funcionó (PD: no es lo primero, tuve algunos fracasos en el trading y criptos, pero esto fue muy breve por lo que no lo cuento).&lt;/p&gt;</description>
