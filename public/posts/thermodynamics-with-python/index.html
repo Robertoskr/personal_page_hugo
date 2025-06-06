@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="es" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Understanding Thermodynamics Through Python: A Computational Approach to Heat and Energy | Roberto Kalinovskyy</title>
+<meta name="keywords" content="">
+<meta name="description" content="Thermodynamics is one of the most fundamental branches of physics, governing everything from steam engines to biological processes. While the mathematical equations can seem abstract, Python provides us with powerful tools to visualize and understand these concepts through computational examples. In this post, we&rsquo;ll explore the key principles of thermodynamics and bring them to life with interactive Python code.
+What is Thermodynamics?
+Thermodynamics is the study of heat, energy, and their transformations. It&rsquo;s built on four fundamental laws that describe how energy behaves in physical systems. These laws govern everything from the efficiency of car engines to the metabolism in our cells.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/thermodynamics-with-python/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="es" href="http://localhost:1313/posts/thermodynamics-with-python/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Roberto Kalinovskyy (Alt + H)">Roberto Kalinovskyy</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Inicio">
+                    <span>Inicio</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/posts/" title="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="Sobre mi">
+                    <span>Sobre mi</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Inicio</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Understanding Thermodynamics Through Python: A Computational Approach to Heat and Energy
+    </h1>
+    <div class="post-meta"><span title='2025-01-27 00:00:00 +0000 UTC'>enero 27, 2025</span>&nbsp;·&nbsp;9 minutos&nbsp;·&nbsp;1846 palabras
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Tabla de Contenidos</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#what-is-thermodynamics" aria-label="What is Thermodynamics?">What is Thermodynamics?</a></li>
+                <li>
+                    <a href="#the-ideal-gas-law-foundation-of-thermodynamics" aria-label="The Ideal Gas Law: Foundation of Thermodynamics">The Ideal Gas Law: Foundation of Thermodynamics</a></li>
+                <li>
+                    <a href="#the-first-law-of-thermodynamics-energy-conservation" aria-label="The First Law of Thermodynamics: Energy Conservation">The First Law of Thermodynamics: Energy Conservation</a></li>
+                <li>
+                    <a href="#visualizing-thermodynamic-cycles-the-carnot-engine" aria-label="Visualizing Thermodynamic Cycles: The Carnot Engine">Visualizing Thermodynamic Cycles: The Carnot Engine</a></li>
+                <li>
+                    <a href="#the-second-law-entropy-and-the-arrow-of-time" aria-label="The Second Law: Entropy and the Arrow of Time">The Second Law: Entropy and the Arrow of Time</a></li>
+                <li>
+                    <a href="#real-world-application-heat-engine-efficiency" aria-label="Real-World Application: Heat Engine Efficiency">Real-World Application: Heat Engine Efficiency</a></li>
+                <li>
+                    <a href="#interactive-thermodynamics-dashboard" aria-label="Interactive Thermodynamics Dashboard">Interactive Thermodynamics Dashboard</a></li>
+                <li>
+                    <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+                <li>
+                    <a href="#further-reading" aria-label="Further Reading">Further Reading</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>Thermodynamics is one of the most fundamental branches of physics, governing everything from steam engines to biological processes. While the mathematical equations can seem abstract, Python provides us with powerful tools to visualize and understand these concepts through computational examples. In this post, we&rsquo;ll explore the key principles of thermodynamics and bring them to life with interactive Python code.</p>
+<h2 id="what-is-thermodynamics">What is Thermodynamics?<a hidden class="anchor" aria-hidden="true" href="#what-is-thermodynamics">#</a></h2>
+<p>Thermodynamics is the study of heat, energy, and their transformations. It&rsquo;s built on four fundamental laws that describe how energy behaves in physical systems. These laws govern everything from the efficiency of car engines to the metabolism in our cells.</p>
+<p>Let&rsquo;s start by setting up our Python environment with the necessary libraries:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> scipy <span style="color:#f92672">import</span> constants
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> scipy.optimize <span style="color:#f92672">import</span> fsolve
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> seaborn <span style="color:#66d9ef">as</span> sns
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set up plotting style</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use(<span style="color:#e6db74">&#39;seaborn-v0_8&#39;</span>)
+</span></span><span style="display:flex;"><span>sns<span style="color:#f92672">.</span>set_palette(<span style="color:#e6db74">&#34;husl&#34;</span>)
+</span></span></code></pre></div><h2 id="the-ideal-gas-law-foundation-of-thermodynamics">The Ideal Gas Law: Foundation of Thermodynamics<a hidden class="anchor" aria-hidden="true" href="#the-ideal-gas-law-foundation-of-thermodynamics">#</a></h2>
+<p>The ideal gas law is perhaps the most important equation in thermodynamics: <strong>PV = nRT</strong></p>
+<p>Where:</p>
+<ul>
+<li>P = Pressure (Pa)</li>
+<li>V = Volume (m³)</li>
+<li>n = Number of moles</li>
+<li>R = Gas constant (8.314 J/mol·K)</li>
+<li>T = Temperature (K)</li>
+</ul>
+<p>Let&rsquo;s create a Python class to model an ideal gas:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">IdealGas</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, n_moles<span style="color:#f92672">=</span><span style="color:#ae81ff">1.0</span>):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>n <span style="color:#f92672">=</span> n_moles  <span style="color:#75715e"># moles</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>R <span style="color:#f92672">=</span> constants<span style="color:#f92672">.</span>R  <span style="color:#75715e"># Gas constant</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">pressure</span>(self, volume, temperature):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Calculate pressure given volume and temperature&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (self<span style="color:#f92672">.</span>n <span style="color:#f92672">*</span> self<span style="color:#f92672">.</span>R <span style="color:#f92672">*</span> temperature) <span style="color:#f92672">/</span> volume
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">volume</span>(self, pressure, temperature):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Calculate volume given pressure and temperature&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (self<span style="color:#f92672">.</span>n <span style="color:#f92672">*</span> self<span style="color:#f92672">.</span>R <span style="color:#f92672">*</span> temperature) <span style="color:#f92672">/</span> pressure
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">temperature</span>(self, pressure, volume):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Calculate temperature given pressure and volume&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (pressure <span style="color:#f92672">*</span> volume) <span style="color:#f92672">/</span> (self<span style="color:#f92672">.</span>n <span style="color:#f92672">*</span> self<span style="color:#f92672">.</span>R)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Example: 1 mole of gas</span>
+</span></span><span style="display:flex;"><span>gas <span style="color:#f92672">=</span> IdealGas(n_moles<span style="color:#f92672">=</span><span style="color:#ae81ff">1.0</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Calculate pressure at different temperatures</span>
+</span></span><span style="display:flex;"><span>temperatures <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#ae81ff">200</span>, <span style="color:#ae81ff">400</span>, <span style="color:#ae81ff">100</span>)  <span style="color:#75715e"># K</span>
+</span></span><span style="display:flex;"><span>volume <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.024</span>  <span style="color:#75715e"># m³ (24 liters)</span>
+</span></span><span style="display:flex;"><span>pressures <span style="color:#f92672">=</span> [gas<span style="color:#f92672">.</span>pressure(volume, T) <span style="color:#66d9ef">for</span> T <span style="color:#f92672">in</span> temperatures]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Plot P vs T relationship</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">6</span>))
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot(temperatures, np<span style="color:#f92672">.</span>array(pressures)<span style="color:#f92672">/</span><span style="color:#ae81ff">1000</span>, <span style="color:#e6db74">&#39;b-&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#39;Temperature (K)&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;Pressure (kPa)&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Ideal Gas: Pressure vs Temperature (Constant Volume)&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>grid(<span style="color:#66d9ef">True</span>, alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
+</span></span></code></pre></div><h2 id="the-first-law-of-thermodynamics-energy-conservation">The First Law of Thermodynamics: Energy Conservation<a hidden class="anchor" aria-hidden="true" href="#the-first-law-of-thermodynamics-energy-conservation">#</a></h2>
+<p>The first law states that energy cannot be created or destroyed, only transformed: <strong>ΔU = Q - W</strong></p>
+<p>Where:</p>
+<ul>
+<li>ΔU = Change in internal energy</li>
+<li>Q = Heat added to the system</li>
+<li>W = Work done by the system</li>
+</ul>
+<p>Let&rsquo;s simulate different thermodynamic processes:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ThermodynamicProcess</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, gas, initial_state):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>gas <span style="color:#f92672">=</span> gas
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>P1, self<span style="color:#f92672">.</span>V1, self<span style="color:#f92672">.</span>T1 <span style="color:#f92672">=</span> initial_state
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">isothermal_expansion</span>(self, final_volume):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Isothermal process: constant temperature&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        T2 <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>T1  <span style="color:#75715e"># Temperature constant</span>
+</span></span><span style="display:flex;"><span>        P2 <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>gas<span style="color:#f92672">.</span>pressure(final_volume, T2)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Work done in isothermal process</span>
+</span></span><span style="display:flex;"><span>        work <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>gas<span style="color:#f92672">.</span>n <span style="color:#f92672">*</span> self<span style="color:#f92672">.</span>gas<span style="color:#f92672">.</span>R <span style="color:#f92672">*</span> T2 <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>log(final_volume <span style="color:#f92672">/</span> self<span style="color:#f92672">.</span>V1)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># For isothermal process: ΔU = 0, so Q = W</span>
+</span></span><span style="display:flex;"><span>        heat <span style="color:#f92672">=</span> work
+</span></span><span style="display:flex;"><span>        delta_u <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;final_state&#39;</span>: (P2, final_volume, T2),
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;work&#39;</span>: work,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;heat&#39;</span>: heat,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;delta_u&#39;</span>: delta_u,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;process_type&#39;</span>: <span style="color:#e6db74">&#39;isothermal&#39;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">adiabatic_expansion</span>(self, final_volume, gamma<span style="color:#f92672">=</span><span style="color:#ae81ff">1.4</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Adiabatic process: no heat exchange (Q = 0)&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># For adiabatic process: PV^γ = constant</span>
+</span></span><span style="display:flex;"><span>        P2 <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>P1 <span style="color:#f92672">*</span> (self<span style="color:#f92672">.</span>V1 <span style="color:#f92672">/</span> final_volume) <span style="color:#f92672">**</span> gamma
+</span></span><span style="display:flex;"><span>        T2 <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>T1 <span style="color:#f92672">*</span> (self<span style="color:#f92672">.</span>V1 <span style="color:#f92672">/</span> final_volume) <span style="color:#f92672">**</span> (gamma <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Work done in adiabatic process</span>
+</span></span><span style="display:flex;"><span>        work <span style="color:#f92672">=</span> (self<span style="color:#f92672">.</span>P1 <span style="color:#f92672">*</span> self<span style="color:#f92672">.</span>V1 <span style="color:#f92672">-</span> P2 <span style="color:#f92672">*</span> final_volume) <span style="color:#f92672">/</span> (gamma <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># For adiabatic process: Q = 0, so ΔU = -W</span>
+</span></span><span style="display:flex;"><span>        heat <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        delta_u <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>work
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;final_state&#39;</span>: (P2, final_volume, T2),
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;work&#39;</span>: work,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;heat&#39;</span>: heat,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;delta_u&#39;</span>: delta_u,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;process_type&#39;</span>: <span style="color:#e6db74">&#39;adiabatic&#39;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Example: Compare isothermal vs adiabatic expansion</span>
+</span></span><span style="display:flex;"><span>gas <span style="color:#f92672">=</span> IdealGas(n_moles<span style="color:#f92672">=</span><span style="color:#ae81ff">1.0</span>)
+</span></span><span style="display:flex;"><span>initial_state <span style="color:#f92672">=</span> (<span style="color:#ae81ff">101325</span>, <span style="color:#ae81ff">0.024</span>, <span style="color:#ae81ff">300</span>)  <span style="color:#75715e"># 1 atm, 24L, 300K</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>process <span style="color:#f92672">=</span> ThermodynamicProcess(gas, initial_state)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expand to double the volume</span>
+</span></span><span style="display:flex;"><span>final_volume <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.048</span>  <span style="color:#75715e"># 48L</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>isothermal <span style="color:#f92672">=</span> process<span style="color:#f92672">.</span>isothermal_expansion(final_volume)
+</span></span><span style="display:flex;"><span>adiabatic <span style="color:#f92672">=</span> process<span style="color:#f92672">.</span>adiabatic_expansion(final_volume)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Isothermal Expansion:&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Work done: </span><span style="color:#e6db74">{</span>isothermal[<span style="color:#e6db74">&#39;work&#39;</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> J&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Heat added: </span><span style="color:#e6db74">{</span>isothermal[<span style="color:#e6db74">&#39;heat&#39;</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> J&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Final temperature: </span><span style="color:#e6db74">{</span>isothermal[<span style="color:#e6db74">&#39;final_state&#39;</span>][<span style="color:#ae81ff">2</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> K&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Adiabatic Expansion:&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Work done: </span><span style="color:#e6db74">{</span>adiabatic[<span style="color:#e6db74">&#39;work&#39;</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> J&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Heat added: </span><span style="color:#e6db74">{</span>adiabatic[<span style="color:#e6db74">&#39;heat&#39;</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> J&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Final temperature: </span><span style="color:#e6db74">{</span>adiabatic[<span style="color:#e6db74">&#39;final_state&#39;</span>][<span style="color:#ae81ff">2</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> K&#34;</span>)
+</span></span></code></pre></div><h2 id="visualizing-thermodynamic-cycles-the-carnot-engine">Visualizing Thermodynamic Cycles: The Carnot Engine<a hidden class="anchor" aria-hidden="true" href="#visualizing-thermodynamic-cycles-the-carnot-engine">#</a></h2>
+<p>The Carnot cycle represents the most efficient heat engine possible. Let&rsquo;s simulate and visualize this cycle:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">carnot_cycle</span>(T_hot, T_cold, V1, V2, V3, V4, n_moles<span style="color:#f92672">=</span><span style="color:#ae81ff">1.0</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Simulate a Carnot cycle with four processes:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    1-2: Isothermal expansion at T_hot
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    2-3: Adiabatic expansion
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    3-4: Isothermal compression at T_cold
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    4-1: Adiabatic compression
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    gas <span style="color:#f92672">=</span> IdealGas(n_moles)
+</span></span><span style="display:flex;"><span>    gamma <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.4</span>  <span style="color:#75715e"># For diatomic gas</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># State 1: Initial state</span>
+</span></span><span style="display:flex;"><span>    P1 <span style="color:#f92672">=</span> gas<span style="color:#f92672">.</span>pressure(V1, T_hot)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Process 1-2: Isothermal expansion at T_hot</span>
+</span></span><span style="display:flex;"><span>    P2 <span style="color:#f92672">=</span> gas<span style="color:#f92672">.</span>pressure(V2, T_hot)
+</span></span><span style="display:flex;"><span>    Q12 <span style="color:#f92672">=</span> n_moles <span style="color:#f92672">*</span> constants<span style="color:#f92672">.</span>R <span style="color:#f92672">*</span> T_hot <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>log(V2<span style="color:#f92672">/</span>V1)
+</span></span><span style="display:flex;"><span>    W12 <span style="color:#f92672">=</span> Q12  <span style="color:#75715e"># ΔU = 0 for isothermal</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Process 2-3: Adiabatic expansion</span>
+</span></span><span style="display:flex;"><span>    P3 <span style="color:#f92672">=</span> P2 <span style="color:#f92672">*</span> (V2<span style="color:#f92672">/</span>V3)<span style="color:#f92672">**</span>gamma
+</span></span><span style="display:flex;"><span>    T3 <span style="color:#f92672">=</span> T_cold  <span style="color:#75715e"># Final temperature after adiabatic expansion</span>
+</span></span><span style="display:flex;"><span>    Q23 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  <span style="color:#75715e"># Adiabatic process</span>
+</span></span><span style="display:flex;"><span>    W23 <span style="color:#f92672">=</span> (P2<span style="color:#f92672">*</span>V2 <span style="color:#f92672">-</span> P3<span style="color:#f92672">*</span>V3)<span style="color:#f92672">/</span>(gamma<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Process 3-4: Isothermal compression at T_cold</span>
+</span></span><span style="display:flex;"><span>    P4 <span style="color:#f92672">=</span> gas<span style="color:#f92672">.</span>pressure(V4, T_cold)
+</span></span><span style="display:flex;"><span>    Q34 <span style="color:#f92672">=</span> n_moles <span style="color:#f92672">*</span> constants<span style="color:#f92672">.</span>R <span style="color:#f92672">*</span> T_cold <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>log(V4<span style="color:#f92672">/</span>V3)
+</span></span><span style="display:flex;"><span>    W34 <span style="color:#f92672">=</span> Q34  <span style="color:#75715e"># ΔU = 0 for isothermal</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Process 4-1: Adiabatic compression</span>
+</span></span><span style="display:flex;"><span>    Q41 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  <span style="color:#75715e"># Adiabatic process</span>
+</span></span><span style="display:flex;"><span>    W41 <span style="color:#f92672">=</span> (P4<span style="color:#f92672">*</span>V4 <span style="color:#f92672">-</span> P1<span style="color:#f92672">*</span>V1)<span style="color:#f92672">/</span>(gamma<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Total work and heat</span>
+</span></span><span style="display:flex;"><span>    W_total <span style="color:#f92672">=</span> W12 <span style="color:#f92672">+</span> W23 <span style="color:#f92672">+</span> W34 <span style="color:#f92672">+</span> W41
+</span></span><span style="display:flex;"><span>    Q_in <span style="color:#f92672">=</span> Q12  <span style="color:#75715e"># Heat input from hot reservoir</span>
+</span></span><span style="display:flex;"><span>    Q_out <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>Q34  <span style="color:#75715e"># Heat output to cold reservoir</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Efficiency</span>
+</span></span><span style="display:flex;"><span>    efficiency <span style="color:#f92672">=</span> W_total <span style="color:#f92672">/</span> Q_in
+</span></span><span style="display:flex;"><span>    carnot_efficiency <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> T_cold<span style="color:#f92672">/</span>T_hot
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;states&#39;</span>: [(P1, V1, T_hot), (P2, V2, T_hot), (P3, V3, T_cold), (P4, V4, T_cold)],
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;work_total&#39;</span>: W_total,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;heat_in&#39;</span>: Q_in,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;heat_out&#39;</span>: Q_out,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;efficiency&#39;</span>: efficiency,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;carnot_efficiency&#39;</span>: carnot_efficiency
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Simulate Carnot cycle</span>
+</span></span><span style="display:flex;"><span>T_hot <span style="color:#f92672">=</span> <span style="color:#ae81ff">600</span>  <span style="color:#75715e"># K</span>
+</span></span><span style="display:flex;"><span>T_cold <span style="color:#f92672">=</span> <span style="color:#ae81ff">300</span>  <span style="color:#75715e"># K</span>
+</span></span><span style="display:flex;"><span>V1, V2, V3, V4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.01</span>, <span style="color:#ae81ff">0.02</span>, <span style="color:#ae81ff">0.04</span>, <span style="color:#ae81ff">0.02</span>  <span style="color:#75715e"># m³</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cycle <span style="color:#f92672">=</span> carnot_cycle(T_hot, T_cold, V1, V2, V3, V4)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Plot P-V diagram</span>
+</span></span><span style="display:flex;"><span>volumes <span style="color:#f92672">=</span> [V1, V2, V3, V4, V1]  <span style="color:#75715e"># Close the cycle</span>
+</span></span><span style="display:flex;"><span>pressures <span style="color:#f92672">=</span> [state[<span style="color:#ae81ff">0</span>] <span style="color:#66d9ef">for</span> state <span style="color:#f92672">in</span> cycle[<span style="color:#e6db74">&#39;states&#39;</span>]] <span style="color:#f92672">+</span> [cycle[<span style="color:#e6db74">&#39;states&#39;</span>][<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">8</span>))
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot(np<span style="color:#f92672">.</span>array(volumes)<span style="color:#f92672">*</span><span style="color:#ae81ff">1000</span>, np<span style="color:#f92672">.</span>array(pressures)<span style="color:#f92672">/</span><span style="color:#ae81ff">1000</span>, <span style="color:#e6db74">&#39;bo-&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, markersize<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#39;Volume (L)&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;Pressure (kPa)&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Carnot Cycle P-V Diagram&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>grid(<span style="color:#66d9ef">True</span>, alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add process labels</span>
+</span></span><span style="display:flex;"><span>labels <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;1→2 (Isothermal)&#39;</span>, <span style="color:#e6db74">&#39;2→3 (Adiabatic)&#39;</span>, <span style="color:#e6db74">&#39;3→4 (Isothermal)&#39;</span>, <span style="color:#e6db74">&#39;4→1 (Adiabatic)&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i, label <span style="color:#f92672">in</span> enumerate(labels):
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>annotate(label, xy<span style="color:#f92672">=</span>(volumes[i]<span style="color:#f92672">*</span><span style="color:#ae81ff">1000</span>, pressures[i]<span style="color:#f92672">/</span><span style="color:#ae81ff">1000</span>), 
+</span></span><span style="display:flex;"><span>                xytext<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">10</span>), textcoords<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;offset points&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Carnot Engine Results:&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Work output: </span><span style="color:#e6db74">{</span>cycle[<span style="color:#e6db74">&#39;work_total&#39;</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> J&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Heat input: </span><span style="color:#e6db74">{</span>cycle[<span style="color:#e6db74">&#39;heat_in&#39;</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> J&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Actual efficiency: </span><span style="color:#e6db74">{</span>cycle[<span style="color:#e6db74">&#39;efficiency&#39;</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.3f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Theoretical Carnot efficiency: </span><span style="color:#e6db74">{</span>cycle[<span style="color:#e6db74">&#39;carnot_efficiency&#39;</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.3f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h2 id="the-second-law-entropy-and-the-arrow-of-time">The Second Law: Entropy and the Arrow of Time<a hidden class="anchor" aria-hidden="true" href="#the-second-law-entropy-and-the-arrow-of-time">#</a></h2>
+<p>The second law of thermodynamics introduces the concept of entropy - a measure of disorder that always increases in isolated systems. Let&rsquo;s explore this with a mixing simulation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">entropy_mixing_simulation</span>(n_particles<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>, n_steps<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Simulate the mixing of two gases and calculate entropy change
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Initialize particles: half on left, half on right</span>
+</span></span><span style="display:flex;"><span>    positions <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros(n_particles)
+</span></span><span style="display:flex;"><span>    positions[:n_particles<span style="color:#f92672">//</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  <span style="color:#75715e"># Left side</span>
+</span></span><span style="display:flex;"><span>    positions[n_particles<span style="color:#f92672">//</span><span style="color:#ae81ff">2</span>:] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>  <span style="color:#75715e"># Right side</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Track the number of particles on each side over time</span>
+</span></span><span style="display:flex;"><span>    left_counts <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    entropies <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> step <span style="color:#f92672">in</span> range(n_steps):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Random walk: each particle has 50% chance to move</span>
+</span></span><span style="display:flex;"><span>        moves <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>random(n_particles) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0.1</span>  <span style="color:#75715e"># 10% chance to move each step</span>
+</span></span><span style="display:flex;"><span>        positions[moves] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> positions[moves]  <span style="color:#75715e"># Flip side</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Count particles on left side</span>
+</span></span><span style="display:flex;"><span>        left_count <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>sum(positions <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        left_counts<span style="color:#f92672">.</span>append(left_count)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Calculate mixing entropy (simplified)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> left_count <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> left_count <span style="color:#f92672">&lt;</span> n_particles:
+</span></span><span style="display:flex;"><span>            p_left <span style="color:#f92672">=</span> left_count <span style="color:#f92672">/</span> n_particles
+</span></span><span style="display:flex;"><span>            p_right <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> p_left
+</span></span><span style="display:flex;"><span>            entropy <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>(p_left <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>log(p_left) <span style="color:#f92672">+</span> p_right <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>log(p_right))
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            entropy <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        entropies<span style="color:#f92672">.</span>append(entropy)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> left_counts, entropies
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run simulation</span>
+</span></span><span style="display:flex;"><span>left_counts, entropies <span style="color:#f92672">=</span> entropy_mixing_simulation()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Plot results</span>
+</span></span><span style="display:flex;"><span>fig, (ax1, ax2) <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">10</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Particle distribution over time</span>
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>plot(left_counts, <span style="color:#e6db74">&#39;b-&#39;</span>, alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>axhline(y<span style="color:#f92672">=</span><span style="color:#ae81ff">500</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;r&#39;</span>, linestyle<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Equilibrium (50%)&#39;</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;Time Steps&#39;</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#39;Particles on Left Side&#39;</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;Gas Mixing: Particle Distribution Over Time&#39;</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>legend()
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>grid(<span style="color:#66d9ef">True</span>, alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Entropy over time</span>
+</span></span><span style="display:flex;"><span>ax2<span style="color:#f92672">.</span>plot(entropies, <span style="color:#e6db74">&#39;g-&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>ax2<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;Time Steps&#39;</span>)
+</span></span><span style="display:flex;"><span>ax2<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#39;Mixing Entropy&#39;</span>)
+</span></span><span style="display:flex;"><span>ax2<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;Entropy Increase During Mixing&#39;</span>)
+</span></span><span style="display:flex;"><span>ax2<span style="color:#f92672">.</span>grid(<span style="color:#66d9ef">True</span>, alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Initial entropy: </span><span style="color:#e6db74">{</span>entropies[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Final entropy: </span><span style="color:#e6db74">{</span>entropies[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Entropy increase: </span><span style="color:#e6db74">{</span>entropies[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> entropies[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h2 id="real-world-application-heat-engine-efficiency">Real-World Application: Heat Engine Efficiency<a hidden class="anchor" aria-hidden="true" href="#real-world-application-heat-engine-efficiency">#</a></h2>
+<p>Let&rsquo;s create a practical example by modeling a car engine and calculating its efficiency:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HeatEngine</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, T_hot, T_cold):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>T_hot <span style="color:#f92672">=</span> T_hot  <span style="color:#75715e"># Hot reservoir temperature (K)</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>T_cold <span style="color:#f92672">=</span> T_cold  <span style="color:#75715e"># Cold reservoir temperature (K)</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>carnot_efficiency <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> T_cold<span style="color:#f92672">/</span>T_hot
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">otto_cycle_efficiency</span>(self, compression_ratio, gamma<span style="color:#f92672">=</span><span style="color:#ae81ff">1.4</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Calculate Otto cycle (car engine) efficiency&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>compression_ratio)<span style="color:#f92672">**</span>(gamma<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">diesel_cycle_efficiency</span>(self, compression_ratio, cutoff_ratio, gamma<span style="color:#f92672">=</span><span style="color:#ae81ff">1.4</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Calculate Diesel cycle efficiency&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        r <span style="color:#f92672">=</span> compression_ratio
+</span></span><span style="display:flex;"><span>        rc <span style="color:#f92672">=</span> cutoff_ratio
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>gamma) <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>r<span style="color:#f92672">**</span>(gamma<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)) <span style="color:#f92672">*</span> ((rc<span style="color:#f92672">**</span>gamma <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">/</span>(rc <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Compare different engine types</span>
+</span></span><span style="display:flex;"><span>T_combustion <span style="color:#f92672">=</span> <span style="color:#ae81ff">2000</span>  <span style="color:#75715e"># K (combustion temperature)</span>
+</span></span><span style="display:flex;"><span>T_exhaust <span style="color:#f92672">=</span> <span style="color:#ae81ff">800</span>     <span style="color:#75715e"># K (exhaust temperature)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>engine <span style="color:#f92672">=</span> HeatEngine(T_combustion, T_exhaust)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Calculate efficiencies for different compression ratios</span>
+</span></span><span style="display:flex;"><span>compression_ratios <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">50</span>)
+</span></span><span style="display:flex;"><span>otto_efficiencies <span style="color:#f92672">=</span> [engine<span style="color:#f92672">.</span>otto_cycle_efficiency(r) <span style="color:#66d9ef">for</span> r <span style="color:#f92672">in</span> compression_ratios]
+</span></span><span style="display:flex;"><span>diesel_efficiencies <span style="color:#f92672">=</span> [engine<span style="color:#f92672">.</span>diesel_cycle_efficiency(r, <span style="color:#ae81ff">2.0</span>) <span style="color:#66d9ef">for</span> r <span style="color:#f92672">in</span> compression_ratios]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">8</span>))
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot(compression_ratios, np<span style="color:#f92672">.</span>array(otto_efficiencies)<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span>, <span style="color:#e6db74">&#39;b-&#39;</span>, 
+</span></span><span style="display:flex;"><span>         linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Otto Cycle (Gasoline Engine)&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot(compression_ratios, np<span style="color:#f92672">.</span>array(diesel_efficiencies)<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span>, <span style="color:#e6db74">&#39;r-&#39;</span>, 
+</span></span><span style="display:flex;"><span>         linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Diesel Cycle&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>axhline(y<span style="color:#f92672">=</span>engine<span style="color:#f92672">.</span>carnot_efficiency<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;g&#39;</span>, linestyle<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--&#39;</span>, 
+</span></span><span style="display:flex;"><span>           linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Carnot Limit (</span><span style="color:#e6db74">{</span>engine<span style="color:#f92672">.</span>carnot_efficiency<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span><span style="color:#e6db74">:</span><span style="color:#e6db74">.1f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">%)&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#39;Compression Ratio&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;Efficiency (%)&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Heat Engine Efficiency vs Compression Ratio&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>legend()
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>grid(<span style="color:#66d9ef">True</span>, alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>ylim(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">70</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Carnot efficiency limit: </span><span style="color:#e6db74">{</span>engine<span style="color:#f92672">.</span>carnot_efficiency<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span><span style="color:#e6db74">:</span><span style="color:#e6db74">.1f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">%&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Typical car engine efficiency (r=10): </span><span style="color:#e6db74">{</span>engine<span style="color:#f92672">.</span>otto_cycle_efficiency(<span style="color:#ae81ff">10</span>)<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span><span style="color:#e6db74">:</span><span style="color:#e6db74">.1f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">%&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Typical diesel engine efficiency (r=18): </span><span style="color:#e6db74">{</span>engine<span style="color:#f92672">.</span>diesel_cycle_efficiency(<span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">2.0</span>)<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span><span style="color:#e6db74">:</span><span style="color:#e6db74">.1f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">%&#34;</span>)
+</span></span></code></pre></div><h2 id="interactive-thermodynamics-dashboard">Interactive Thermodynamics Dashboard<a hidden class="anchor" aria-hidden="true" href="#interactive-thermodynamics-dashboard">#</a></h2>
+<p>Finally, let&rsquo;s create an interactive visualization that lets us explore how different parameters affect thermodynamic processes:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create_thermodynamics_dashboard</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;Create an interactive dashboard for exploring thermodynamic relationships&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Create sample data for different processes</span>
+</span></span><span style="display:flex;"><span>    temperatures <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#ae81ff">200</span>, <span style="color:#ae81ff">600</span>, <span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>    volumes <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#ae81ff">0.01</span>, <span style="color:#ae81ff">0.1</span>, <span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Create a grid for 3D plotting</span>
+</span></span><span style="display:flex;"><span>    T_grid, V_grid <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>meshgrid(temperatures, volumes)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Calculate pressure surface for ideal gas (n=1 mol)</span>
+</span></span><span style="display:flex;"><span>    gas <span style="color:#f92672">=</span> IdealGas(n_moles<span style="color:#f92672">=</span><span style="color:#ae81ff">1.0</span>)
+</span></span><span style="display:flex;"><span>    P_grid <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros_like(T_grid)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(temperatures)):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(len(volumes)):
+</span></span><span style="display:flex;"><span>            P_grid[j, i] <span style="color:#f92672">=</span> gas<span style="color:#f92672">.</span>pressure(volumes[j], temperatures[i])
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Create 3D surface plot</span>
+</span></span><span style="display:flex;"><span>    fig <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">5</span>))
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 3D surface plot</span>
+</span></span><span style="display:flex;"><span>    ax1 <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_subplot(<span style="color:#ae81ff">131</span>, projection<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;3d&#39;</span>)
+</span></span><span style="display:flex;"><span>    surf <span style="color:#f92672">=</span> ax1<span style="color:#f92672">.</span>plot_surface(T_grid, V_grid<span style="color:#f92672">*</span><span style="color:#ae81ff">1000</span>, P_grid<span style="color:#f92672">/</span><span style="color:#ae81ff">1000</span>, 
+</span></span><span style="display:flex;"><span>                           cmap<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;viridis&#39;</span>, alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.8</span>)
+</span></span><span style="display:flex;"><span>    ax1<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;Temperature (K)&#39;</span>)
+</span></span><span style="display:flex;"><span>    ax1<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#39;Volume (L)&#39;</span>)
+</span></span><span style="display:flex;"><span>    ax1<span style="color:#f92672">.</span>set_zlabel(<span style="color:#e6db74">&#39;Pressure (kPa)&#39;</span>)
+</span></span><span style="display:flex;"><span>    ax1<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;Ideal Gas: P-V-T Surface&#39;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Contour plot</span>
+</span></span><span style="display:flex;"><span>    ax2 <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_subplot(<span style="color:#ae81ff">132</span>)
+</span></span><span style="display:flex;"><span>    contour <span style="color:#f92672">=</span> ax2<span style="color:#f92672">.</span>contour(T_grid, V_grid<span style="color:#f92672">*</span><span style="color:#ae81ff">1000</span>, P_grid<span style="color:#f92672">/</span><span style="color:#ae81ff">1000</span>, levels<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+</span></span><span style="display:flex;"><span>    ax2<span style="color:#f92672">.</span>clabel(contour, inline<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>)
+</span></span><span style="display:flex;"><span>    ax2<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;Temperature (K)&#39;</span>)
+</span></span><span style="display:flex;"><span>    ax2<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#39;Volume (L)&#39;</span>)
+</span></span><span style="display:flex;"><span>    ax2<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;Pressure Contours (kPa)&#39;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Efficiency comparison</span>
+</span></span><span style="display:flex;"><span>    ax3 <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_subplot(<span style="color:#ae81ff">133</span>)
+</span></span><span style="display:flex;"><span>    T_hot_range <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#ae81ff">400</span>, <span style="color:#ae81ff">1000</span>, <span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>    T_cold <span style="color:#f92672">=</span> <span style="color:#ae81ff">300</span>
+</span></span><span style="display:flex;"><span>    carnot_eff <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> T_cold<span style="color:#f92672">/</span>T_hot_range
+</span></span><span style="display:flex;"><span>    real_eff <span style="color:#f92672">=</span> carnot_eff <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.6</span>  <span style="color:#75715e"># Assume 60% of Carnot efficiency</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    ax3<span style="color:#f92672">.</span>plot(T_hot_range, carnot_eff<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span>, <span style="color:#e6db74">&#39;r-&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Carnot Limit&#39;</span>)
+</span></span><span style="display:flex;"><span>    ax3<span style="color:#f92672">.</span>plot(T_hot_range, real_eff<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span>, <span style="color:#e6db74">&#39;b-&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Real Engine&#39;</span>)
+</span></span><span style="display:flex;"><span>    ax3<span style="color:#f92672">.</span>fill_between(T_hot_range, real_eff<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span>, carnot_eff<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span>, alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;gray&#39;</span>)
+</span></span><span style="display:flex;"><span>    ax3<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;Hot Reservoir Temperature (K)&#39;</span>)
+</span></span><span style="display:flex;"><span>    ax3<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#39;Efficiency (%)&#39;</span>)
+</span></span><span style="display:flex;"><span>    ax3<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;Engine Efficiency vs Temperature&#39;</span>)
+</span></span><span style="display:flex;"><span>    ax3<span style="color:#f92672">.</span>legend()
+</span></span><span style="display:flex;"><span>    ax3<span style="color:#f92672">.</span>grid(<span style="color:#66d9ef">True</span>, alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>show()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>create_thermodynamics_dashboard()
+</span></span></code></pre></div><h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>Through these Python examples, we&rsquo;ve explored the fundamental concepts of thermodynamics:</p>
+<ol>
+<li><strong>The Ideal Gas Law</strong> provides the foundation for understanding pressure-volume-temperature relationships</li>
+<li><strong>The First Law</strong> shows us how energy is conserved in all processes</li>
+<li><strong>The Second Law</strong> introduces entropy and explains why certain processes are irreversible</li>
+<li><strong>Heat Engines</strong> demonstrate practical applications and efficiency limits</li>
+</ol>
+<p>Python&rsquo;s computational power allows us to visualize these abstract concepts and explore &ldquo;what-if&rdquo; scenarios that would be difficult to investigate experimentally. Whether you&rsquo;re studying physics, engineering, or just curious about how the world works, computational thermodynamics provides powerful insights into the fundamental laws that govern energy and heat.</p>
+<p>The code examples in this post can be extended and modified to explore other thermodynamic phenomena like phase transitions, chemical reactions, or more complex engine cycles. The beauty of computational physics is that it makes the invisible visible and the complex understandable.</p>
+<h2 id="further-reading">Further Reading<a hidden class="anchor" aria-hidden="true" href="#further-reading">#</a></h2>
+<ul>
+<li><strong>Textbooks</strong>: &ldquo;Thermodynamics: An Engineering Approach&rdquo; by Çengel &amp; Boles</li>
+<li><strong>Python Libraries</strong>: SciPy, NumPy, Matplotlib for scientific computing</li>
+<li><strong>Advanced Topics</strong>: Statistical mechanics, quantum thermodynamics, non-equilibrium processes</li>
+</ul>
+<p>Try running these examples yourself and experiment with different parameters. Thermodynamics is everywhere around us - from the coffee cooling on your desk to the stars burning in the sky!</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/posts/sobre-como-encontrar-lo-que-te-gusta/">
+    <span class="title">« Anterior</span>
+    <br>
+    <span>Cómo encontrar lo que te gusta después de años sin cuestionarlo</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Roberto Kalinovskyy</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copiar';
+
+        function copyingDone() {
+            copybutton.innerHTML = '¡copiado!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copiar';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
